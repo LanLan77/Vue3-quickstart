@@ -6,7 +6,20 @@
 	</head>
 	<body>
 		<div id="app">
-			<span v-bind:title= "message ">页面的加载时间</span>
+			<span v-bind:title="message ">页面的加载时间</span>
+			
+			<hr>
+			<p v-if="seen">你现在可以看到我了</p>
+			<hr>
+			<ol>
+				<li v-for="goods in goodsList">
+					{{goods.title}}
+				</li>
+			</ol>
+			
+			<hr>
+			<div>{{message1}}</div>
+			<button v-on:click="reverseMessage">翻转消息 </button>
 		</div>
 		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
 		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -14,7 +27,18 @@
 			 var app = new Vue({ 
 				 "el": "#app",
 				 data:{
-					 message: "hello vue" + new Date().toDateString ()
+					 message: "hello vue" + new Date().toDateString (),
+					 message1: "王小美学vue",
+					 seen: true,
+					 goodsList:[
+						 {"title": "苹果"},
+						 {"title": "香蕉"} 
+					 ]
+				 },
+				 methods:{
+					 reverseMessage(){
+						this.message1 = this.message1.split('').reverse().join(',')
+					 }
 				 }
 			 });
 		</script>
