@@ -40,6 +40,13 @@
 	  <hr>
 	  <a v-bind:[sd]="url">... </a>
 	  
+	  
+	  <hr>
+	  <div id="example">
+		  <p>原始的字符串:{{message2}}</p>
+		  <p>翻转的字符串:{{reversedMessage2}}</p>
+	  </div> 
+	  
     </div>
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -66,31 +73,37 @@
 		  rawHtml:"<span style='color:red'>原生Html </span>",
 		  isButtonDisable: true,
 		  sd: "href",
-		  url: "https://www.bilibili.com/video/BV15Y411W7Bj/?p=8&spm_id_from=pageDriver&vd_source=be66e2e596d7cad20f6838213c9a00d2"
+		  url: "https://www.bilibili.com/video/BV15Y411W7Bj/?p=8&spm_id_from=pageDriver&vd_source=be66e2e596d7cad20f6838213c9a00d2",
+          message2: "王小美在学习Vue"
+        },
+        computed: {
+          reversedMessage2: function () {
+            return this.message2.split('').reverse().join('');
+          }
         },
         beforeCreate() {
-          alert("beforeCreate")
+          alert("beforeCreate");
         },
         created() {
-          alert("created")
+          alert("created");
         },
         beforeMount() {
-          alert("beforeMount")
+          alert("beforeMount");
         },
         mounted() {
-          alert("mounted")
+          alert("mounted");
         },
         beforeUpdate() {
-          alert("beforeUpdate")
+          alert("beforeUpdate");
         },
         updated() {
-          alert("updated")
+          alert("updated");
         },
         beforeDestroy() {
-          alert("beforeDestroy")
+          alert("beforeDestroy");
         },
         destroyed() {
-          alert("destroyed")
+          alert("destroyed");
         },
         methods: {
           reverseMessage() {
