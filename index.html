@@ -10,14 +10,18 @@
 
       <hr>
       <p v-if="seen">你现在可以看到我了</p>
+	  
+	  
       <hr>
       <ol>
         <li v-for="goods in goodsList">{{goods.title}}</li>
       </ol>
 
+
       <hr>
       <div>{{message1}}</div>
       <button v-on:click="reverseMessage">翻转消息</button>
+
 
       <hr>
       <div>组件演示区域</div>
@@ -26,6 +30,16 @@
         v-bind:todo="item"
         v-bind:key="item.id"
       ></todo-item>
+	  
+	  
+	  <hr>
+	  <p>Using mustaches:{{rawHTML}}</p>
+	  <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+	  <hr>
+	  <button v-bind:disabled="isButtonDisable">button </button>
+	  <hr>
+	  <a v-bind:[sd]="url">... </a>
+	  
     </div>
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -48,7 +62,35 @@
           todoList: [
             { id: 1, text: "油菜" },
             { id: 2, text: "胡萝卜" }
-          ]
+          ],
+		  rawHtml:"<span style='color:red'>原生Html </span>",
+		  isButtonDisable: true,
+		  sd: "href",
+		  url: "https://www.bilibili.com/video/BV15Y411W7Bj/?p=8&spm_id_from=pageDriver&vd_source=be66e2e596d7cad20f6838213c9a00d2"
+        },
+        beforeCreate() {
+          alert("beforeCreate")
+        },
+        created() {
+          alert("created")
+        },
+        beforeMount() {
+          alert("beforeMount")
+        },
+        mounted() {
+          alert("mounted")
+        },
+        beforeUpdate() {
+          alert("beforeUpdate")
+        },
+        updated() {
+          alert("updated")
+        },
+        beforeDestroy() {
+          alert("beforeDestroy")
+        },
+        destroyed() {
+          alert("destroyed")
         },
         methods: {
           reverseMessage() {
