@@ -1,46 +1,61 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-		<div id="app">
-			<span v-bind:title="message ">页面的加载时间</span>
-			
-			<hr>
-			<p v-if="seen">你现在可以看到我了</p>
-			<hr>
-			<ol>
-				<li v-for="goods in goodsList">
-					{{goods.title}}
-				</li>
-			</ol>
-			
-			<hr>
-			<div>{{message1}}</div>
-			<button v-on:click="reverseMessage">翻转消息 </button>
-		</div>
-		<!-- 开发环境版本，包含了有帮助的命令行警告 -->
-		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-		<script>
-			 var app = new Vue({ 
-				 "el": "#app",
-				 data:{
-					 message: "hello vue" + new Date().toDateString (),
-					 message1: "王小美学vue",
-					 seen: true,
-					 goodsList:[
-						 {"title": "苹果"},
-						 {"title": "香蕉"} 
-					 ]
-				 },
-				 methods:{
-					 reverseMessage(){
-						this.message1 = this.message1.split('').reverse().join(',')
-					 }
-				 }
-			 });
-		</script>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+      <span v-bind:title="message">页面的加载时间</span>
+
+      <hr>
+      <p v-if="seen">你现在可以看到我了</p>
+      <hr>
+      <ol>
+        <li v-for="goods in goodsList">{{goods.title}}</li>
+      </ol>
+
+      <hr>
+      <div>{{message1}}</div>
+      <button v-on:click="reverseMessage">翻转消息</button>
+
+      <hr>
+      <div>组件演示区域</div>
+      <todo-item
+        v-for="item in todoList"
+        v-bind:todo="item"
+        v-bind:key="item.id"
+      ></todo-item>
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      Vue.component("todo-item", {
+        props: ["todo"],
+        template: "<li>{{todo.text}}</li>"
+      });
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "hello vue " + new Date().toDateString(),
+          message1: "王小美学vue",
+          seen: true,
+          goodsList: [
+            { "title": "苹果" },
+            { "title": "香蕉" }
+          ],
+          todoList: [
+            { id: 1, text: "油菜" },
+            { id: 2, text: "胡萝卜" }
+          ]
+        },
+        methods: {
+          reverseMessage() {
+            this.message1 = this.message1.split('').reverse().join('');
+          }
+        }
+      });
+    </script>
+  </body>
 </html>
